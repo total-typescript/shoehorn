@@ -15,9 +15,7 @@ const undefinedProperties = new Set<string | symbol>([
 export const fromPartial = <T>(mock: object & PartialDeep<NoInfer<T>>): T => {
   const proxy = new Proxy(mock, {
     get(target, p, receiver) {
-      if (undefinedProperties.has(p)) return undefined;
-
-      if (typeof p !== "symbol" && !(p in target)) {
+      if (!undefinedProperties.has(p) && typeof p !== "symbol" && !(p in target)) {
         throw new Error(`${String(p)} not found in mocked object`);
       }
       return Reflect.get(target, p, receiver);
