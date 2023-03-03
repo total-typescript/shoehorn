@@ -17,6 +17,12 @@ describe("fromPartial", () => {
     expect(result).toEqual({ foo: { bar: "bazz" } });
   });
 
+  it("Should return whatever you pass in with arrays", () => {
+    const result = fromPartial({ foo: ["bar", "bazz"] });
+
+    expect(result).toEqual({ foo: ["bar", "bazz"] });
+  });
+
   it("Should throw an error when the test itself accesses a property not defined on the input", () => {
     const func = (input: { id: string }) => {
       return input.id;
