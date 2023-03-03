@@ -1,5 +1,5 @@
 {
-  "name": "@total-typescript/test-utils",
+  "name": "@total-typescript/mock-utils",
   "version": "0.0.1",
   "description": "Work seamlessly with TypeScript in test suites.",
   "main": "dist/index.js",
@@ -9,12 +9,14 @@
     "test": "vitest run",
     "dev": "vitest",
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "lint": "tsc"
+    "lint": "tsc",
+    "release": "turbo build lint test && changeset publish"
   },
   "keywords": [],
   "author": "Matt Pocock",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@types/node": "^18.14.5",
     "tsup": "^6.6.3",
     "turbo": "^1.8.3",
