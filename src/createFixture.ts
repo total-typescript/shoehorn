@@ -1,9 +1,11 @@
 import { Base } from "./types";
 
-const _createMock = <T, Default = {}>(fixture: Default): Base<T, Default> => {
+const _createFixture = <T, Default = {}>(
+  fixture: Default
+): Base<T, Default> => {
   return {
     get: () => fixture as unknown as T,
-    set: (base) => _createMock(base),
+    set: (base) => _createFixture(base),
     fromExact: (mock) => {
       return {
         ...fixture,
@@ -25,6 +27,6 @@ const _createMock = <T, Default = {}>(fixture: Default): Base<T, Default> => {
  *
  * @returns
  */
-export const createMock = <T>(): Base<T> => {
-  return _createMock({});
+export const createFixture = <T>(): Base<T> => {
+  return _createFixture({});
 };

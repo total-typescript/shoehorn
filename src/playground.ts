@@ -1,5 +1,5 @@
 import { it } from "vitest";
-import { createMock } from "./createMock";
+import { createFixture } from "./createFixture";
 import { fromAny, fromPartial, fromExact } from "./utils";
 
 type User = {
@@ -9,7 +9,7 @@ type User = {
 
 const func = (user: User) => {};
 
-const baseUser = createMock<User>().set({
+const baseUser = createFixture<User>().set({
   id: "123123",
   name: "awdawd",
 });
