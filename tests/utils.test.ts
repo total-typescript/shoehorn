@@ -11,13 +11,13 @@ describe("fromPartial", () => {
     expect(result).toEqual({ foo: "bar" });
   });
 
-  // it("Should throw an error when the test itself accesses a property not defined on the input", () => {
-  //   const func = (input: { id: string }) => {
-  //     return input.id;
-  //   };
+  it("Should throw an error when the test itself accesses a property not defined on the input", () => {
+    const func = (input: { id: string }) => {
+      return input.id;
+    };
 
-  //   expect(() => func(fromPartial({}))).toThrow();
-  // });
+    expect(() => func(fromPartial({}))).toThrow();
+  });
 
   it("When not passed into a function, it should return unknown", () => {
     const result = fromPartial({ foo: "bar" });
