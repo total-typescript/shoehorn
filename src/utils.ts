@@ -6,6 +6,14 @@ import { Base, NoInfer, PartialDeep } from "./types";
  * @returns whatever you pass in
  */
 export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
+  // const proxy = new Proxy(mock, {
+  //   get(target, p, receiver) {
+  //     if (typeof p !== "symbol" && !(p in target)) {
+  //       throw new Error(`${String(p)} not found in mocked object`);
+  //     }
+  //     return Reflect.get(target, p, receiver);
+  //   },
+  // });
   return mock as T;
 };
 

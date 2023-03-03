@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { createBase } from "../src";
+import { createMock } from "../src";
 import { Equal, Expect } from "./test-utils";
 
-describe("createBase", () => {
+describe("createMock", () => {
   type User = {
     id: number;
     name: string;
@@ -11,7 +11,7 @@ describe("createBase", () => {
     }[];
   };
 
-  const user = createBase<User>();
+  const user = createMock<User>();
 
   it("Should start off with an empty object base, but should be assignable to the correct type", () => {
     const fixture = user.get();
@@ -46,7 +46,7 @@ describe("createBase", () => {
       {
         id: 1,
         name: "Bob",
-      },
+      }
     );
   });
 
@@ -69,7 +69,7 @@ describe("createBase", () => {
       })
       .fromExact(
         // @ts-expect-error
-        {},
+        {}
       );
   });
 

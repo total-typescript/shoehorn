@@ -20,9 +20,10 @@ export type PartialObjectDeep<ObjectType extends object> = {
 };
 
 export interface Base<T, Default = {}> {
-  _base: Default;
   get: () => T;
-  set: <NewDefault extends Partial<T>>(base: NewDefault) => Base<T, NewDefault>;
+  set: <NewDefault extends PartialDeep<T>>(
+    base: NewDefault
+  ) => Base<T, NewDefault>;
   fromExact: (mock: Omit<T, keyof Default> & Partial<Default>) => T;
   fromPartial: (mock: PartialDeep<T>) => T;
   fromAny: <U>(mock: U | NoInfer<T>) => T;
