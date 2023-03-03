@@ -19,9 +19,3 @@ it("Should work", () => {
 });
 
 const getUserId = (user: User) => {};
-
-// Property 'name' is missing in type '{ id: string; }'
-// but required in type 'User'.
-getUserId({
-  id: "123",
-});
