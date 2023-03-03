@@ -7,18 +7,34 @@ const undefinedProperties = new Set<string | symbol>([
   "asymmetricMatch",
 ]);
 
+const isFromPartialSymbol = Symbol("isFromPartial");
+
 /**
  * Lets you pass a deep partial of a type to a function
  *
  * @returns whatever you pass in
  */
-export const fromPartial = <T>(mock: object & PartialDeep<NoInfer<T>>): T => {
-  const proxy = new Proxy(mock, {
+export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
+  const proxy = new Proxy(mock as {}, {
     get(target, p, receiver) {
+      if (p == isFromPartialSymbol) return true;
+
       if (!undefinedProperties.has(p) && typeof p !== "symbol" && !(p in target)) {
         throw new Error(`${String(p)} not found in mocked object`);
       }
-      return Reflect.get(target, p, receiver);
+
+      var actual = Reflect.get(target, p, receiver);
+      // Check if we are something we can recursively make proxies for.
+      // We also want to make sure that we are not making a proxy for 
+      // something that is already a fromPartial proxy.
+      // We might end up in an infinite loop if we don't do this.
+      if (typeof actual === "object"
+        && actual !== null
+        && !isFromPartialInstance(actual)) { 
+        return fromPartial(actual);
+      }
+
+      return actual;
     },
   });
   return proxy as T;
@@ -42,3 +58,8 @@ export const fromAny = <T, U>(mock: U | NoInfer<T>): T => {
 export const fromExact = <T>(mock: T): T => {
   return mock;
 };
+
+
+function isFromPartialInstance(obj: any) { 
+  return obj[isFromPartialSymbol] === true;
+}
