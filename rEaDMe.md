@@ -39,15 +39,20 @@ it("Should return an id", () => {
 });
 ```
 
-## Pass types to
+## API
 
 ### `fromExact`
 
+TODO
+
 ### `fromAny`
+
+TODO
 
 ### `fromPartial`
 
-`fromPartial` lets you pass a deep partial of an object to a slot expecting that
-object. This is
+TODO
 
-## `createMock`
+## `createFixture`
+
+TODO

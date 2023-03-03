@@ -4,3 +4,5 @@ pnpm-lock.yaml
 tsconfig.json
 .changeset
 .turbo
+.github
+turbo.json

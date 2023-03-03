@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { createMock } from "../src";
+import { createFixture } from "../src";
 import { Equal, Expect } from "./test-utils";
 
-describe("createMock", () => {
+describe("createFixture", () => {
   type User = {
     id: number;
     name: string;
@@ -11,7 +11,7 @@ describe("createMock", () => {
     }[];
   };
 
-  const user = createMock<User>();
+  const user = createFixture<User>();
 
   it("Should start off with an empty object base, but should be assignable to the correct type", () => {
     const fixture = user.get();
