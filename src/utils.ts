@@ -12,8 +12,13 @@ const PROTECTED_KEYS = [
   "isEqualNode",
   "asymmetricMatch",
 ];
-export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
-  const proxy = new Proxy(mock as {}, {
+
+const createProxy = <T>(mock: T): T => {
+  if (typeof mock !== "object" || mock === null) {
+    return mock;
+  }
+
+  const proxy = new Proxy(mock, {
     get(target, p, receiver) {
       if (
         typeof p !== "symbol" &&
@@ -22,10 +27,16 @@ export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
       ) {
         throw new Error(`${String(p)} not found in mocked object`);
       }
-      return Reflect.get(target, p, receiver);
+
+      return createProxy(target[p as keyof typeof target]);
     },
   });
-  return proxy as T;
+
+  return proxy;
+};
+
+export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
+  return createProxy(mock) as T;
 };
 
 /**
@@ -35,7 +46,7 @@ export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
  * @returns whatever you pass in
  */
 export const fromAny = <T, U>(mock: U | NoInfer<T>): T => {
-  return mock as T;
+  return createProxy(mock) as T;
 };
 
 /**

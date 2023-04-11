@@ -19,6 +19,42 @@ describe("fromPartial", () => {
     expect(() => func(fromPartial({}))).toThrow();
   });
 
+  it("Should throw an error when the test itself accesses a DEEPLY NESTED property not defined on the input", () => {
+    const func = (input: {
+      foo: {
+        id: string;
+      };
+    }) => {
+      return input.foo.id;
+    };
+
+    expect(() =>
+      func(
+        fromPartial({
+          foo: {},
+        }),
+      ),
+    ).toThrow();
+  });
+
+  it("Should throw an error when the test itself accesses a DEEPLY NESTED property not defined on the input", () => {
+    const func = (input: {
+      foo: {
+        id: string;
+      };
+    }) => {
+      return input.foo.id;
+    };
+
+    expect(() =>
+      func(
+        fromPartial({
+          foo: {},
+        }),
+      ),
+    ).toThrow();
+  });
+
   it("When not passed into a function, it should return unknown", () => {
     const result = fromPartial({ foo: "bar" });
 
@@ -40,7 +76,7 @@ describe("fromPartial", () => {
     }>(
       fromPartial({
         foo: "bar",
-      })
+      }),
     );
   });
 
@@ -59,7 +95,7 @@ describe("fromPartial", () => {
         foo: "bar",
         bar: {},
         arr: [{ id: 1 }],
-      })
+      }),
     );
   });
 
@@ -72,7 +108,7 @@ describe("fromPartial", () => {
         foo: "bar",
         // @ts-expect-error
         baz: 1,
-      })
+      }),
     );
   });
 });
@@ -98,7 +134,7 @@ describe("fromAny", () => {
     accept<{ foo: string; bar: number }>(
       fromAny({
         foo: "awdaw",
-      })
+      }),
     );
   });
 
@@ -110,7 +146,7 @@ describe("fromAny", () => {
       fromAny({
         foo: "bar",
         baz: 1,
-      })
+      }),
     );
   });
 });
@@ -133,7 +169,7 @@ describe("fromExact", () => {
       // @ts-expect-error
       fromExact({
         foo: "bar",
-      })
+      }),
     );
   });
 });
