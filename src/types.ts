@@ -11,20 +11,10 @@ export type PartialDeep<T> = T extends (...args: any[]) => unknown
       ? readonly ItemType[] extends T // Differentiate readonly and mutable arrays
         ? ReadonlyArray<PartialDeep<ItemType | undefined>>
         : Array<PartialDeep<ItemType | undefined>>
-      : PartialObjectDeep<T> // Tuples behave properly
-    : PartialObjectDeep<T>
+      : PartialDeepObject<T> // Tuples behave properly
+    : PartialDeepObject<T>
   : T;
 
-export type PartialObjectDeep<ObjectType extends object> = {
+export type PartialDeepObject<ObjectType extends object> = {
   [KeyType in keyof ObjectType]?: PartialDeep<ObjectType[KeyType]>;
 };
-
-export interface Base<T, Default = {}> {
-  get: () => T;
-  set: <NewDefault extends PartialDeep<T>>(
-    base: NewDefault
-  ) => Base<T, NewDefault>;
-  fromExact: (mock: Omit<T, keyof Default> & Partial<Default>) => T;
-  fromPartial: (mock: PartialDeep<T>) => T;
-  fromAny: <U>(mock: U | NoInfer<T>) => T;
-}

@@ -1,19 +1,11 @@
-import { Base, NoInfer, PartialDeep } from "./types";
+import { NoInfer, PartialDeep } from "./types";
 
 /**
- * Lets you pass a deep partial of a type to a function
+ * Lets you pass a deep partial to a slot expecting a type.
  *
  * @returns whatever you pass in
  */
 export const fromPartial = <T>(mock: PartialDeep<NoInfer<T>>): T => {
-  // const proxy = new Proxy(mock, {
-  //   get(target, p, receiver) {
-  //     if (typeof p !== "symbol" && !(p in target)) {
-  //       throw new Error(`${String(p)} not found in mocked object`);
-  //     }
-  //     return Reflect.get(target, p, receiver);
-  //   },
-  // });
   return mock as T;
 };
 
@@ -28,7 +20,7 @@ export const fromAny = <T, U>(mock: U | NoInfer<T>): T => {
 };
 
 /**
- * Forces you to pass the entire object
+ * Forces you to pass the exact type of the thing the slot requires
  *
  * @returns whatever you pass in
  */

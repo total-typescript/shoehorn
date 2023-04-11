@@ -95,5 +95,8 @@
   "include": [
     "src",
     "tests"
+  ],
+  "exclude": [
+    "src/playground.ts"
   ]
 }

@@ -1,21 +1,14 @@
 import { it } from "vitest";
-import { createFixture } from "./createFixture";
-import { fromAny, fromPartial, fromExact } from "./utils";
+import { fromAny, fromPartial } from "./utils";
 
-type User = {
-  id: string;
-  name: string;
+type Request = {
+  body: {
+    id: string;
+  };
+  // Imagine oodles of other properties...
 };
 
-const func = (user: User) => {};
+// The function we're testing
+const requiresRequest = (request: Request) => {};
 
-const baseUser = createFixture<User>().set({
-  id: "123123",
-  name: "awdawd",
-});
-
-it("Should work", () => {
-  func(baseUser.fromExact({}));
-});
-
-const getUserId = (user: User) => {};
+requiresRequest(fromAny("1234123"));
