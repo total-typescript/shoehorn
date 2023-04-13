@@ -113,7 +113,7 @@ It WILL NOT FAIL if you pass something that doesn't match.
 
 ```ts
 // All good!
-requiresRequest(fromPartial("1234123"));
+requiresRequest(fromAny("1234123"));
 ```
 
 ### `fromExact`
