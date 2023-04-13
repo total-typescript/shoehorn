@@ -34,7 +34,7 @@ it("Should get the user", () => {
 import { fromPartial } from "@total-typescript/shoehorn";
 
 it("Should get the user", () => {
-  getUserId(
+  getUser(
     fromPartial({
       body: {
         id: "123",
