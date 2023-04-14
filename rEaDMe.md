@@ -1,6 +1,6 @@
 # `shoehorn`
 
-`shoehorn` lets you pass partial data in tests, while keeping TypeScript happy.
+`shoehorn` (meaning "to force something into a space") lets you pass partial data in tests while keeping TypeScript happy.
 
 ```ts
 type Request = {
