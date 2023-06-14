@@ -1,6 +1,6 @@
 {
   "name": "@total-typescript/shoehorn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Work seamlessly with partial mocks in TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
