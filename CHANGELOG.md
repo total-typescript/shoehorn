@@ -1,5 +1,11 @@
 # @total-typescript/shoehorn
 
+## 0.1.1
+
+### Patch Changes
+
+- aef7bc8: Fixed issue where passing functions would break fromPartial.
+
 ## 0.1.0
 
 ### Minor Changes
