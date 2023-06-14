@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { fromAny, fromExact, fromPartial } from "../src";
-import { Equal, Expect } from "./test-utils";
-
-const accept = <T>(_t: T) => {};
+import { fromPartial } from "../src";
+import { Equal, Expect, accept } from "./test-utils";
+import { AxiosInstance } from "axios";
 
 describe("fromPartial", () => {
   it("Should return whatever you pass in", () => {
@@ -67,65 +66,15 @@ describe("fromPartial", () => {
       }),
     );
   });
-});
 
-describe("fromAny", () => {
-  it("Should return whatever you pass in", () => {
-    const result = fromAny({ foo: "bar" });
-
-    expect(result).toEqual({ foo: "bar" });
+  it("Should accept functions", () => {
+    accept<() => void>(fromPartial({}));
   });
 
-  it("Should return unknown if not called in a function's args", () => {
-    const result = fromAny({ foo: "bar" });
-
-    type test = Expect<Equal<typeof result, unknown>>;
-  });
-
-  it("Should let you pass anything to a function", () => {
-    accept<{ foo: string; bar: number }>(fromAny("str"));
-
-    accept<{ foo: string; bar: number }>(fromAny(124123));
-
-    accept<{ foo: string; bar: number }>(
-      fromAny({
-        foo: "awdaw",
-      }),
-    );
-  });
-
-  it("When passed into a function, it should NOT give excess property warnings", () => {
+  it("Should accept interfaces which combine object properties and a call signature", () => {
     accept<{
+      (): void;
       foo: string;
-      bar: number;
-    }>(
-      fromAny({
-        foo: "bar",
-        baz: 1,
-      }),
-    );
-  });
-});
-
-describe("fromExact", () => {
-  it("Should return whatever you pass in", () => {
-    const result = fromExact({ foo: "bar" });
-
-    expect(result).toEqual({ foo: "bar" });
-  });
-
-  it("Should return the type you pass in", () => {
-    const result = fromExact({ foo: "bar" });
-
-    type test = Expect<Equal<typeof result, { foo: string }>>;
-  });
-
-  it("When passed to a function, it should expect the exact type", () => {
-    accept<{ foo: string; bar: number }>(
-      // @ts-expect-error
-      fromExact({
-        foo: "bar",
-      }),
-    );
+    }>(fromPartial({}));
   });
 });
