@@ -37,3 +37,5 @@ export type UnionToIntersection<U> = (
   : never;
 
 export const doNotExecute = (func: () => any) => {};
+
+export const accept = <T>(_t: T) => {};
