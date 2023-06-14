@@ -1,6 +1,10 @@
 # `shoehorn`
 
-`shoehorn` (meaning "to force something into a space") lets you pass partial data in tests while keeping TypeScript happy.
+`shoehorn` (meaning "to force something into a space") lets you **pass partial data in tests** while keeping TypeScript happy.
+
+### Problem
+
+Using 'as' in tests feels bad.
 
 ```ts
 type Request = {
@@ -22,11 +26,11 @@ it("Should get the user", () => {
 });
 ```
 
-'as' in tests feels bad.
-
 - You're trained not to use it
 - You need to _manually_ specify the type you want to assert to
 - For testing with incorrect data, you need to 'double-as' (`as unknown as User`)
+
+### Solution
 
 `shoehorn` gives you some first-class primitives for _safely_ providing incomplete data to tests.
 
