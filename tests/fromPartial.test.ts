@@ -76,4 +76,17 @@ describe("fromPartial", () => {
       foo: string;
     }>(fromPartial({}));
   });
+
+  it("Should make interfaces which combined object properties and call signatures deeply partial", () => {
+    accept<{
+      (): void;
+      foo: {
+        deepProperty: string;
+      };
+    }>(
+      fromPartial({
+        foo: {},
+      }),
+    );
+  });
 });

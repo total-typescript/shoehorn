@@ -4,7 +4,7 @@ export type NoInfer<T> = [T][T extends any ? 0 : never];
  * Adapted from type-fest's PartialDeep
  */
 export type PartialDeep<T> = T extends (...args: any[]) => any
-  ? Partial<T> | undefined
+  ? PartialDeepObject<T> | undefined
   : T extends object
   ? T extends ReadonlyArray<infer ItemType> // Test for arrays/tuples, per https://github.com/microsoft/TypeScript/issues/35156
     ? ItemType[] extends T // Test for arrays (non-tuples) specifically
