@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { fromPartial } from "../src";
 import { Equal, Expect, accept } from "./test-utils";
-import { AxiosInstance } from "axios";
 
 describe("fromPartial", () => {
   it("Should return whatever you pass in", () => {
