@@ -94,7 +94,7 @@ describe("fromPartial", () => {
     );
   });
 
-  it("Can handle deeply recursive partial types", () => {
+  it("Should handle deeply recursive partial types", () => {
     interface RecursiveInterface {
       (bar: string) : RecursiveInterface;
       foo: {
