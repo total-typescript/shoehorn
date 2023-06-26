@@ -69,6 +69,10 @@ describe("fromPartial", () => {
   it("Should accept functions", () => {
     accept<() => void>(fromPartial({}));
   });
+  
+  it("Should deeply infer types from functions", () => {
+    accept<(foo: string) => (bar: number) => {baz: string}>(fromPartial((foo) => (bar) => {}));
+  });
 
   it("Should accept interfaces which combine object properties and a call signature", () => {
     accept<{
