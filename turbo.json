@@ -6,6 +6,7 @@
     },
     "lint": {},
     "test": {},
+    "attw": {},
     "dev": {
       "cache": false
     }
