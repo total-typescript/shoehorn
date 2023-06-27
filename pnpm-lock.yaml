@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@arethetypeswrong/cli':
-    specifier: ^0.4.1
-    version: 0.4.1
+    specifier: ^0.4.2
+    version: 0.4.2
   '@changesets/cli':
     specifier: ^2.26.0
     version: 2.26.0
@@ -33,8 +33,8 @@ packages:
     resolution: {integrity: sha512-hL80MHK3b++pEp6K23+Nl5r5D1F19DRagp2ruCBIv4McyCiLKq67vUNvEQY1aGCAKNZ8GxV23n5MhOm7RwO8Pg==}
     dev: true
 
-  /@arethetypeswrong/cli@0.4.1:
-    resolution: {integrity: sha512-gil3ktK7fytIZPK3rbZw09AElb5DO/Cfl+rChyj9PLZnDZOtc1legjU/I7N1zqoQQxyNGszO1L+1v4jEamvrsg==}
+  /@arethetypeswrong/cli@0.4.2:
+    resolution: {integrity: sha512-RlAiNUUgvsM8GX9kzNTgB8xuANf2j9klpHxU3xPhfqO03MU9ybD7Qq82ULWECe/pAX9CfT93EzEzFmoFivv5VA==}
     hasBin: true
     dependencies:
       '@arethetypeswrong/core': 0.4.1
