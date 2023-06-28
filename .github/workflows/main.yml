@@ -18,4 +18,4 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo lint build test
+      - run: pnpm turbo lint build test attw
