@@ -2,6 +2,12 @@
 
 `shoehorn` (meaning "to force something into a space") lets you **pass partial data in tests** while keeping TypeScript happy.
 
+### Installation
+
+```
+$ npm i @total-typescript/shoehorn
+```
+
 ### Problem
 
 Using 'as' in tests feels bad.
