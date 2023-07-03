@@ -2,7 +2,7 @@
 
 `shoehorn` (meaning "to force something into a space") lets you **pass partial data in tests** while keeping TypeScript happy.
 
-### Install
+### Installation
 
 ```
 $ npm i @total-typescript/shoehorn
