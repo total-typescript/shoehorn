@@ -1,6 +1,6 @@
 {
   "name": "@total-typescript/shoehorn",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Work seamlessly with partial mocks in TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/total-typescript/shoehorn.git",
+    "url": "https://github.com/total-typescript/shoehorn.git"
   },
   "bugs": {
     "url": "https://github.com/total-typescript/shoehorn/issues"
