@@ -69,6 +69,10 @@ describe("fromPartial", () => {
   it("Should accept functions", () => {
     accept<() => void>(fromPartial({}));
   });
+  
+  it("Should deeply infer types from functions", () => {
+    accept<(foo: string) => (bar: number) => {baz: string}>(fromPartial((foo) => (bar) => {}));
+  });
 
   it("Should accept interfaces which combine object properties and a call signature", () => {
     accept<{
@@ -89,4 +93,17 @@ describe("fromPartial", () => {
       }),
     );
   });
+
+  it("Should handle deeply recursive partial types", () => {
+    interface RecursiveInterface {
+      (bar: string) : RecursiveInterface;
+      foo: {
+        deepProperty: string
+      },
+    }
+    accept<RecursiveInterface>(
+        fromPartial(bar => (bar2)=> ({})),
+    );
+  });
+  
 });
