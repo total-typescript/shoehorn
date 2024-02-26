@@ -23,6 +23,13 @@
   "keywords": [],
   "author": "Matt Pocock",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/total-typescript/shoehorn.git",
+  },
+  "bugs": {
+    "url": "https://github.com/total-typescript/shoehorn/issues"
+  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.4.2",
     "@changesets/cli": "^2.26.0",
